@@ -35,3 +35,20 @@ Classの基本：https://www.tech-teacher.jp/blog/python-class/<br>
 
 
 【参考サイト】
+・復習：if __name__ == "__main__":　⇒　https://blog.pyq.jp/entry/Python_kaiketsu_180207
+
+【疑問に思ったこと、理解した内容】
+●疑問点（課題1）
+item_master.append(Item("001","りんご",100))　というitem_masterへの情報追加において、
+それぞれの引数3つの情報が、コード、商品名、金額であることをどこで認識しているか。
+
+●理解した内容
+appendの際に、Itemクラスを呼び出しているので、Itemクラスの
+def __init__(self,item_code,item_name,price):
+の通り、それぞれの情報が紐づけされている。
+紐づけられた状態で、mainメソッドのitem_master=[]に格納されているので、
+item_master.item_codeで番号を、item_master.item_nameで商品名を呼び出せる。
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+
