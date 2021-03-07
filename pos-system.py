@@ -28,24 +28,24 @@ class Order:
             if order_code == order.item_code:
                 print("商品名：{}".format(order.item_name))
                 print("価格：{}".format(order.price))
-    
+            
     
 ### メイン処理
 def main():
-    # マスタ登録⇒Itemクラスを使用しているので
+    # マスタ登録⇒Itemクラスを使用しているので、引数もそれに準ずる
     item_master=[]
-    item_master.append(Item("001","りんご",100))
-    item_master.append(Item("002","なし",120))
-    item_master.append(Item("003","みかん",150))
+    item_master.append(Item("1","りんご",100))
+    item_master.append(Item("2","なし",120))
+    item_master.append(Item("3","みかん",150))
     
     # オーダー登録⇒Orderクラスへ
     order=Order(item_master)
-    order.add_item_order("001")
-    order.add_item_order("002")
-    order.add_item_order("003")
-    
+    o =  list(input("オーダー番号を入力して下さい（例　1 2 5）：").split())
+    for i in o:
+        order.add_item_order(i)
+
     # オーダー表示
-    print("オーダーが下記の通り入りました")
+    print("オーダーが入りました")
     print("************************")
 
     for i in order.item_order_list:
