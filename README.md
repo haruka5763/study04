@@ -40,6 +40,7 @@ Classの基本：https://www.tech-teacher.jp/blog/python-class/<br>
 ・Task3　CSV読み込み　⇒　https://qiita.com/motoki1990/items/0274d8bcf1a97fe4a869
 ・Task3　csvを配列に格納　⇒　https://kaworu.jpn.org/kaworu/2018-06-02-1.php#2018-06-02-1-52f3c6c0243230aea4377d03501a6d0c
 ・Task3　csvをDataframeとして読み込む方法　⇒　https://ai-trend.jp/programming/python/pandas-read_csv/
+・Take3　二次元配列のfor文出の作り方　⇒　https://www.javadrive.jp/python/list/index17.html
 
 【疑問に思ったこと、理解した内容】
 ●疑問点（課題1）

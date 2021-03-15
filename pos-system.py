@@ -11,6 +11,26 @@ class Item:
     def get_price(self):
         return self.price
 
+# csvからマスタ情報取得　Task3
+def item_master_csv(csv):
+
+    try:
+        csv_input = pd.read_csv(csv, encoding="utf-8_sig")
+        df = pd.DataFrame(csv_input)
+        loopcount =len(df['item_code'])
+        for i in range(loopcount):
+            item_master = []
+            for item_code,item_name,price in zip(
+                list(df['item_code']), list(df['item_name']), list(df['price'])
+                ):
+                item_master.append((item_code,item_name,price))
+        return item_master
+
+    except Exception as e:
+        print("csvが読み込めませんでした")
+        print(e)
+        sys.exit()
+
 
 
 ### オーダークラス
@@ -22,6 +42,9 @@ class Order:
 
         # メニュー一覧
         self.item_master=item_master
+
+
+
 
     def add_item_order(self, item_code, item_count):
         self.item_order_list.append(item_code)
@@ -39,60 +62,38 @@ class Order:
                 print("ご注文ありがとうございました!")
             break
 
-
-
-        
-    # def view_item_list(self):
-    #     print("メニューはこちらになります")
-    #     for item in self.item_order_list:
-    #         print("商品コード:{}".format(item))
-    
     # オーダーの詳細情報取得 Task1
     def order_detail(self):
         print("オーダーが入りました")
         print("************************")
         print(self.item_master)
+        itemclass = Item
         for order_code in self.item_order_list:
-            if order_code == self.item_master.item_code:
-                print("商品名：{}".format(self.item_master.item_name))
-                print("価格：{}".format(self.item_master.price))
-
-    
-
-
-
-    
-# csvからマスタ情報取得　Task3
-def item_master_csv(csv):
-    item_master = []
-    try:
-        csv_input = pd.read_csv(csv, encoding="utf-8_sig")
-        df = pd.DataFrame(csv_input)
-        print(df)
-
-        for item_code,item_name,price in zip(
-            list(df['item_code']), list(df['item_name']), list(df['price'])
+            for item_code,item_name,price in zip(
+            list(itemclass.item_code), list(itemclass.item_name), list(itemclass.price)
             ):
-                item_master.append((Item(item_code,item_name,price)))
-        return item_master
-
-    except Exception as e:
-        print("csvが読み込めませんでした")
-        print(e)
-        sys.exit()
-    
-    a = list(df.columns)
-    print (a)
-
+                if order_code == item_code[0]:
+                    print("商品名：{}".format(item_name[0]))
+                    print("価格：{}".format(price[0]))
+                elif order_code == item_code[1]:
+                    print("商品名：{}".format(item_name[1]))
+                    print("価格：{}".format(price[1]))                    
+                elif order_code == item_code[2]:
+                    print("商品名：{}".format(item_name[2]))
+                    print("価格：{}".format(price[2]))   
+                else:
+                    print("リストにありません")
 
 
 ### メイン処理
 def main():
     # マスタ登録 Task3
-    item_master=item_master_csv("./item_master.csv")
+    csv = "./item_master.csv"
+    item_master=item_master_csv(csv)
+    print(item_master)
     # Order classのインスタンス生成
     order = Order(item_master)
-
+    item = Item()
     # order.view_item_list
     # オーダー登録 Task2
     order.receive_order()
